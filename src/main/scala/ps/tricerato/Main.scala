@@ -6,6 +6,8 @@ import unfiltered.netty.ReceivedMessage
 import unfiltered.request._
 import unfiltered.response._
 import JavaConversions._
+import util.Properties
+
 object Main {
   val plan = unfiltered.netty.cycle.Planify {
      case req @ POST(Path("/")) => response(req)
@@ -24,7 +26,7 @@ object Main {
 
 
   def main(args:Array[String]) {
-    val port = args.headOption.map(_.toInt).getOrElse(8080)
+    val port = Properties.envOrElse("PORT", "8080").toInt
     unfiltered.netty.Http(port).chunked(10000000).plan(plan).run()
   }
 
