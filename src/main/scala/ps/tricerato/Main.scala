@@ -1,3 +1,5 @@
+package ps.tricerato.poisauce
+
 import collection.immutable.SortedMap
 import collection.JavaConversions
 import java.io.ByteArrayInputStream
